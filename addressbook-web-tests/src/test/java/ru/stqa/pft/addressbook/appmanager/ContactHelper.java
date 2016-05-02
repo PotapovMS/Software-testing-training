@@ -21,7 +21,6 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
-    click(By.name("searchform"));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -46,9 +45,9 @@ public class ContactHelper extends HelperBase {
       wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[1]")).click();
     }
     if (creation){
-      new Select(wd.findElement(By.name("new group"))).selectByVisibleText(contactData.getGroup());
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
-      Assert.assertFalse(isElementPresent(By.name("new group")));
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
 
