@@ -44,7 +44,7 @@ public class ContactHelper extends HelperBase {
     if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[1]")).isSelected()) {
       wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[1]")).click();
     }
-    if (creation){
+    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -66,5 +66,23 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form[1]/input[1]"));
+  }
+
+  public void goToAddNewContactPage() {
+    if (wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")){
+      return;
+    }
+    click(By.linkText("add new"));
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    goToAddNewContactPage();
+    fillContactForm(contact, creation);
+    submitContactCreation();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
