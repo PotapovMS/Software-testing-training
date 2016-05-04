@@ -45,9 +45,7 @@ public class ContactHelper extends HelperBase {
       wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[1]")).click();
     }
     if (creation) {
-      if (! wd.findElement(By.tagName("option")).getText().isEmpty()){
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-      }
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
