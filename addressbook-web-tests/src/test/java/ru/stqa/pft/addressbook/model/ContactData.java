@@ -1,59 +1,101 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String firstname;
-  private final String middlename;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String homePhoneNumber;
-  private final String mobilePhoneNumber;
-  private final String workPhoneNumber;
-  private final String faxNumber;
-  private final String secondEmail;
-  private final String thirdEmail;
-  private final String homepage;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String middlename;
+  private String lastname;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String homePhoneNumber;
+  private String mobilePhoneNumber;
+  private String workPhoneNumber;
+  private String faxNumber;
+  private String secondEmail;
+  private String thirdEmail;
+  private String homepage;
   private String group;
 
-  public ContactData(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String homePhoneNumber, String mobilePhoneNumber, String workPhoneNumber, String faxNumber, String secondEmail, String thirdEmail, String homepage, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.homePhoneNumber = homePhoneNumber;
-    this.mobilePhoneNumber = mobilePhoneNumber;
-    this.workPhoneNumber = workPhoneNumber;
-    this.faxNumber = faxNumber;
-    this.secondEmail = secondEmail;
-    this.thirdEmail = thirdEmail;
-    this.homepage = homepage;
-    this.group = group;
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
   }
 
-  public ContactData(int id, String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String homePhoneNumber, String mobilePhoneNumber, String workPhoneNumber, String faxNumber, String secondEmail, String thirdEmail, String homepage, String group) {
-    this.id = id;
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withMiddlename(String middlename) {
     this.middlename = middlename;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
     this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
     this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public ContactData withHomePhoneNumber(String homePhoneNumber) {
     this.homePhoneNumber = homePhoneNumber;
+    return this;
+  }
+
+  public ContactData withMobilePhoneNumber(String mobilePhoneNumber) {
     this.mobilePhoneNumber = mobilePhoneNumber;
+    return this;
+  }
+
+  public ContactData withWorkPhoneNumber(String workPhoneNumber) {
     this.workPhoneNumber = workPhoneNumber;
+    return this;
+  }
+
+  public ContactData withFaxNumber(String faxNumber) {
     this.faxNumber = faxNumber;
+    return this;
+  }
+
+  public ContactData withSecondEmail(String secondEmail) {
     this.secondEmail = secondEmail;
+    return this;
+  }
+
+  public ContactData withThirdEmail(String thirdEmail) {
     this.thirdEmail = thirdEmail;
+    return this;
+  }
+
+  public ContactData withHomepage(String homepage) {
     this.homepage = homepage;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
     this.group = group;
+    return this;
   }
 
   public int getId() {
@@ -118,10 +160,6 @@ public class ContactData {
 
   public String getGroup() {
     return group;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   @Override

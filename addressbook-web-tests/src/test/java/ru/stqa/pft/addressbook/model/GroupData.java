@@ -6,12 +6,6 @@ public class GroupData {
   private String header;
   private String footer;
 
-  public int getId() {
-    return id;
-  }
-  public String getName() {
-    return name;
-  }
   public GroupData withId(int id) {
     this.id = id;
     return this;
@@ -27,6 +21,13 @@ public class GroupData {
   public GroupData withFooter(String footer) {
     this.footer = footer;
     return this;
+  }
+
+  public int getId() {
+    return id;
+  }
+  public String getName() {
+    return name;
   }
   public String getHeader() {
     return header;
