@@ -9,7 +9,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Максим on 22.04.2016.
@@ -60,6 +62,10 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get (index).click();
   }
 
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id +"']")).click();
+  }
+
   public void submitContactDeletion() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
@@ -69,8 +75,29 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.xpath(".//*[@name='entry']//a[contains(@href,'edit.php')]")).get(index).click();
   }
 
+  public void editContactById(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cell = row.findElements(By.tagName("td"));
+    cell.get(7).findElement(By.tagName("a")).click();
+  }
+
+  public void modify(ContactData contact){
+    selectContactById(contact.getId());
+    editContactById(contact.getId());
+    fillContactForm(contact, false);
+    submitContactModification();
+    returnToHomePage();
+  }
+
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form[1]/input[1]"));
+  }
+
+  public void delete(ContactData contact){
+    selectContactById(contact.getId());
+    submitContactDeletion();
+    returnToHomePage();
   }
 
   public void goToAddNewContactPage() {
@@ -95,8 +122,8 @@ public class ContactHelper extends HelperBase {
    return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
-    List<ContactData> contacts = new ArrayList<>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.name ("entry"));
     for (WebElement element: elements){
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
