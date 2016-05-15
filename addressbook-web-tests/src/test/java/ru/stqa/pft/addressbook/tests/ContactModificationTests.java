@@ -3,8 +3,8 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import java.util.Comparator;
-import java.util.List;
+
+import java.util.Set;
 
 /**
  * Created by Максим on 23.04.2016.
@@ -14,26 +14,19 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification (){
     app.goTo().goToHomePage();
-    if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData().withFirstname("FirstName").withLastname("LastName").withGroup("a"));
+    if (!app.contact().isThereAContact()) {
+      app.contact().createContact(new ContactData().withFirstname("FirstName").withLastname("LastName").withGroup("a"));
     }
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size() - 1);
-    app.getContactHelper().editContact(before.size() - 1);
-    Integer index = before.size() - 1;
+    Set<ContactData> before = app.contact().all();
+    ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().
-            withId(before.get(index).getId()).withFirstname("FirstName").withLastname("LastName").withGroup("b");
-    app.getContactHelper().fillContactForm(contact, false);
-    app.getContactHelper().submitContactModification();
-    app.getContactHelper().returnToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+            withId(modifiedContact.getId()).withFirstname("FirstName").withLastname("LastName").withGroup("b");
+    app.contact().modify(contact);
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size() - 1);
+    before.remove(modifiedContact);
     before.add(contact);
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 }
