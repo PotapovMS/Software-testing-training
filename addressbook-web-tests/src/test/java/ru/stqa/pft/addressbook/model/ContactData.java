@@ -12,11 +12,18 @@ public class ContactData {
   private String homePhoneNumber;
   private String mobilePhoneNumber;
   private String workPhoneNumber;
+  private String allPhones;
   private String faxNumber;
   private String secondEmail;
   private String thirdEmail;
   private String homepage;
   private String group;
+
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return  this;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -140,6 +147,10 @@ public class ContactData {
 
   public String getWorkPhoneNumber() {
     return workPhoneNumber;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
   }
 
   public String getFaxNumber() {
