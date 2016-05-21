@@ -14,7 +14,7 @@ public class ContactEmailTests extends TestBase {
 
   @Test
   public void testContactEmails() {
-    app.goTo().goToHomePage();
+    app.goTo().homePage();
     if (!app.contact().isThereAContact()) {
       app.contact().createContact(new ContactData().withFirstname("FirstName").withLastname("LastName").withGroup("a").withFirstEmail("FirstEmail").withSecondEmail("SecondEmail").withThirdEmail("ThirdEmail"));
     }

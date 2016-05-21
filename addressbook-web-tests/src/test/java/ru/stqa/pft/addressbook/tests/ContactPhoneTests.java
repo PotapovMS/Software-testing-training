@@ -14,7 +14,7 @@ public class ContactPhoneTests extends TestBase {
 
   @Test
   public void testContactPhones(){
-    app.goTo().goToHomePage();
+    app.goTo().homePage();
     if (!app.contact().isThereAContact()) {
       app.contact().createContact(new ContactData().withFirstname("FirstName").withLastname("LastName").withHomePhoneNumber("+79250269963").withMobilePhoneNumber("+79250141185").withWorkPhoneNumber("+74950252284").withGroup("a"));
     }

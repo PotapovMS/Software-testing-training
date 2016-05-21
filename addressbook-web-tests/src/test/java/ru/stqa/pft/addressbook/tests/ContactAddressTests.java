@@ -12,7 +12,7 @@ public class ContactAddressTests extends TestBase {
 
   @Test
   public void testContactAddress(){
-    app.goTo().goToHomePage();
+    app.goTo().homePage();
     if (!app.contact().isThereAContact()) {
       app.contact().createContact(new ContactData().withFirstname("FirstName").withLastname("LastName").withGroup("a").withAddress("Address1"));
     }

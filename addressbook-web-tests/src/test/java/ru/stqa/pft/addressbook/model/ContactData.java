@@ -18,6 +18,7 @@ public class ContactData {
   private String secondEmail;
   private String thirdEmail;
   private String allEmails;
+  private String allInfo;
   private String homepage;
   private String group;
 
@@ -107,6 +108,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllInfo(String allInfo) {
+    this.allInfo = allInfo;
+    return this;
+  }
+
   public ContactData withHomepage(String homepage) {
     this.homepage = homepage;
     return this;
@@ -184,6 +190,10 @@ public class ContactData {
     return allEmails;
   }
 
+  public String getAllInfo() {
+    return allInfo;
+  }
+
   public String getHomepage() {
     return homepage;
   }
@@ -222,5 +232,6 @@ public class ContactData {
             ", lastname='" + lastname + '\'' +
             '}';
   }
+
 
 }
